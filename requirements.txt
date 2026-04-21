@@ -1,0 +1,5 @@
+natasha
+sentence-transformers
+openpyxl
+torch
+setuptools==81.0.0
