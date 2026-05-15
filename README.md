@@ -1,25 +1,25 @@
-# Phraseological Expression Detector — «вешать лапшу на уши»
+# Детектор фразеологических выражений — «вешать лапшу на уши»
 
-Classifies sentences containing **«лапша»** into three groups:
+Классифицирует предложения, содержащие **«лапша»**, на три группы:
 
-| Output file         | Group        | Rule                                                   |
-| ------------------- | ------------ | ------------------------------------------------------ |
-| `idiom.xlsx`        | Full idiom   | «лапша» + verb «вешать / повесить» (any form/tense)    |
-| `segmentation.xlsx` | Segmentation | «лапша» used figuratively (deception), **no** «вешать» |
-| `literal.xlsx`      | Literal      | «лапша» used literally (food)                          |
+| Выходной файл | Группа                          | Правило                                                                                            |
+| ------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `idiom.xlsx`            | Полный идиом               | «лапша» + глагол «вешать / повесить» (любая форма/время)      |
+| `segmentation.xlsx`     | Сегментация                | «лапша» употреблена фигурально (обман),**без** «вешать» |
+| `literal.xlsx`          | Буквальное значение | «лапша» употреблена буквально (еда)                                         |
 
-## Quick start
+## Быстрый старт
 
 ```bash
 pip install -r requirements.txt
 python classify.py data.xlsx
 ```
 
-Three output files appear next to the input file.
+Три выходных файла появятся рядом с входным файлом.
 
-## If HuggingFace is blocked (Russia)
+## Если HuggingFace заблокирован (Россия)
 
-Set the mirror **before** the first run so the model can be downloaded:
+Установите зеркало **до** первого запуска, чтобы модель могла скачаться:
 
 ```powershell
 # PowerShell
@@ -33,15 +33,15 @@ export HF_ENDPOINT="https://hf-mirror.com"
 python classify.py data.xlsx
 ```
 
-After the first run the model is cached locally and no internet is needed.
+После первого запуска модель кэшируется локально и интернет больше не нужен.
 
-## Project structure
+## Структура проекта
 
 ```
-classify.py      — entry point (argv parsing, pipeline orchestration)
-config.py        — meanings, model name, reference phrases
-morphology.py    — Natasha-based lemmatisation
-semantics.py     — Sentence Transformers–based similarity classification
-io_excel.py      — Excel read / write helpers
-requirements.txt — Python dependencies
+classify.py      — точка входа (разбор аргументов, оркестрация пайплайна)
+config.py        — значения, название модели, эталонные фразы
+morphology.py    — лемматизация на основе Natasha
+semantics.py     — классификация по сходству на основе Sentence Transformers
+io_excel.py      — вспомогательные функции для чтения/записи Excel
+requirements.txt — зависимости Python
 ```
