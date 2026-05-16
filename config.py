@@ -94,15 +94,13 @@ FOOD_STEMS: set[str] = {
 }
 
 # ── Семантическая модель ──────────────────────────────────────────────────
-# Компактный русскоязычный BERT для задач семантического сходства.
-# Хорошо работает с sentence-transformers, достаточно лёгкий для быстрого вывода.
 MODEL_NAME = "cointegrated/rubert-tiny2"
 
 # Папка для кэширования модели (модель скачивается один раз, затем используется локально)
 import os as _os
 MODEL_CACHE_DIR = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "model_cache")
 
-# Если HuggingFace заблокирован (частая ситуация в России), установите
+# Если HuggingFace заблокирован, установите
 # переменную окружения перед первым запуском:
 #   $env:HF_ENDPOINT = "https://hf-mirror.com"          # PowerShell
 #   export HF_ENDPOINT="https://hf-mirror.com"           # bash
