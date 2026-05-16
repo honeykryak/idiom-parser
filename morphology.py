@@ -20,7 +20,7 @@ from config import HANG_VERB_LEMMAS, HANG_VERB_STEM, FOOD_STEMS
 
 @dataclass
 class TokenInfo:
-    """Информация о токене: позиция, сырой текст, лемма."""
+    """Информация о токене: позиция, текст, лемма."""
     index: int
     text: str
     lemma: str
