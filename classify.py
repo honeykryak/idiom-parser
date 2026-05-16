@@ -126,12 +126,12 @@ def main() -> None:
     input_path, max_dist = parse_args()
     output_dir = os.path.dirname(os.path.abspath(input_path))
 
-    # --- чтение ---
+    # чтение
     print("[1/5] Чтение входного файла …")
     sentences = read_sentences(input_path)
     print(f"      Загружено предложений: {len(sentences)}")
 
-    # --- морфология ---
+    # морфология
     print("[2/5] Инициализация морфологического пайплайна Natasha …")
     morph_pipeline = build_morph_pipeline()
 
@@ -151,7 +151,7 @@ def main() -> None:
     print(f"      Идиомы: {len(idioms)}, сегментация (ухо): {len(segmentation_morph)}, "
           f"прямое (еда): {len(literal_morph)}, осталось: {len(remaining)}")
 
-    # --- семантика ---
+    # семантика
     print("[4/5] Загрузка семантической модели и классификация оставшихся …")
     sem_model = load_semantic_model()
     classifier = MeaningClassifier(sem_model, IDIOM_MEANINGS)
@@ -161,7 +161,7 @@ def main() -> None:
     print(f"      Сегментация (сем.): {len(segmentation_sem)}, Прямое (сем.): {len(literal_sem)}")
     print(f"      Итого: идиомы={len(idioms)}, сегментация={len(segmentation)}, прямое={len(literal)}")
 
-    # --- запись ---
+    # запись
     print("[5/5] Запись выходных файлов …")
     if not os.path.exists(os.path.join(output_dir, "output")):
         os.mkdir(os.path.join(output_dir, "output"))
