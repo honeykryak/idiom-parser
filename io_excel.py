@@ -16,7 +16,7 @@ def read_sentences(path: str) -> list[str]:
     wb = load_workbook(path, read_only=True, data_only=True)
     ws = wb.active
 
-    # Определяем индекс нужного столбца по заголовку первой строки
+    
     header_row = next(ws.iter_rows(min_row=1, max_row=1, values_only=True))
     try:
         col_index = list(header_row).index(FULL_CONTEXT_COLUMN)
@@ -28,7 +28,7 @@ def read_sentences(path: str) -> list[str]:
         )
 
     sentences: list[str] = []
-    # Пропускаем первую строку (заголовок), читаем данные
+
     for row in ws.iter_rows(min_row=2, values_only=True):
         value = row[col_index]
         if value is not None:
