@@ -45,25 +45,3 @@ class MeaningClassifier:
         sim_fig = _cosine_similarity(sent_emb, self._fig_emb)
         sim_lit = _cosine_similarity(sent_emb, self._lit_emb)
         return "figurative" if sim_fig > sim_lit else "literal"
-
-
-def classify_by_meaning(
-    sentence: str,
-    model: SentenceTransformer,
-    meanings: dict[str, list[str]] | None = None,
-) -> str:
-    """Возвращает ``"figurative"`` или ``"literal"`` в зависимости от
-    семантической близости предложения к эталонным фразам из *meanings*.
-    """
-    if meanings is None:
-        meanings = IDIOM_MEANINGS
-
-    sent_emb = model.encode(sentence, convert_to_numpy=True)
-
-    fig_emb = _mean_embedding(model, meanings["figurative"])
-    lit_emb = _mean_embedding(model, meanings["literal"])
-
-    sim_fig = _cosine_similarity(sent_emb, fig_emb)
-    sim_lit = _cosine_similarity(sent_emb, lit_emb)
-
-    return "figurative" if sim_fig > sim_lit else "literal"
